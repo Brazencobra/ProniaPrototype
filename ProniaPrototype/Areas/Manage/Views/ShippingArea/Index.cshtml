@@ -1,0 +1,35 @@
+﻿@model ICollection<ShippingArea>
+<div class="col-lg-6 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">ShippingAreas</h4>
+            <a class="btn btn-primary w-50" asp-area="Manage" asp-controller="ShippingArea" asp-action="Create">Create</a>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (ShippingArea item in (Model ?? new List<ShippingArea>()))
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td>@item.Description</td>
+                                <td><img src="@item.ImageUrl" /></td>
+                                <td><a class="btn btn-info" asp-area="Manage" asp-controller="ShippingArea" asp-action="Update" asp-route-id="@item.Id">Update</a></td>
+                                <td><a class="btn btn-danger" asp-area="Manage" asp-controller="ShippingArea" asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

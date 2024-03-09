@@ -1,0 +1,23 @@
+﻿@model Brand
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Update Brand</h4>
+                        <form class="forms-sample" method="post">
+                            <div class="form-group">
+                                <label asp-for="ImageUrl">ImageUrl</label>
+                                <input asp-for="ImageUrl" class="form-control">
+                            </div>
+                            @* <a  class="btn btn-primary me-2" asp-area="Manage" asp-controller="Brand" asp-action="Update" >Update</a> *@
+                            <button type="submit" class="btn btn-primary me-2">Update</button>
+                            <a class="btn btn-light" asp-area="Manage" asp-controller="Brand" asp-action="Index">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
