@@ -245,3 +245,4 @@ C:\Users\user\Desktop\Projects\ProniaPrototype\ProniaPrototype\obj\Debug\net6.0\
 C:\Users\user\Desktop\Projects\ProniaPrototype\ProniaPrototype\obj\Debug\net6.0\ProniaPrototype.RazorAssemblyInfo.cache
 C:\Users\user\Desktop\Projects\ProniaPrototype\ProniaPrototype\obj\Debug\net6.0\ProniaPrototype.RazorAssemblyInfo.cs
 C:\Users\user\Desktop\Projects\ProniaPrototype\ProniaPrototype\bin\Debug\net6.0\ProniaPrototype.staticwebassets.runtime.json
+C:\Users\user\Desktop\Projects\ProniaPrototype\ProniaPrototype\obj\Debug\net6.0\ProniaPrototype.sourcelink.json

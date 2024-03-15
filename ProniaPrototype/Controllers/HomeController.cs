@@ -16,6 +16,7 @@ namespace ProniaPrototype.Controllers
             ViewBag.Opinions = _context.Opinions.ToList();
             ViewBag.ShippingAreas = _context.ShippingAreas.ToList();
             ViewBag.Sliders = _context.Sliders.ToList();
+            ViewBag.Banners = _context.Banners.ToList();
             return View();
         }
         public IActionResult Shop()

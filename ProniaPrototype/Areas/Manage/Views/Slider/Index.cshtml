@@ -1,5 +1,5 @@
-﻿@model ICollection<Slider>
-<div class="col-lg-8 grid-margin stretch-card">
+﻿@model List<Slider>
+<div class="col-lg-10 grid-margin stretch-card">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Sliders</h4>
@@ -12,18 +12,20 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>DiscountPercent</th>
+                            <th>Order</th>
                             <th>Image</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (Slider item in (Model ?? new List<Slider>()))
+                        @foreach (Slider item in Model)
                         {
                             <tr>
                                 <td>@item.Id</td>
                                 <td>@item.Name</td>
                                 <td>@item.Description</td>
                                 <td>@item.DiscountPercent</td>
+                                <td>@item.Order</td>
                                 <td><img src="@item.ImageUrl" /></td>
                                 <td><a class="btn btn-info" asp-area="Manage" asp-controller="Slider" asp-action="Update" asp-route-id="@item.Id">Update</a></td>
                                 <td><a class="btn btn-danger" asp-area="Manage" asp-controller="Slider" asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>

@@ -24,6 +24,11 @@ namespace ProniaPrototype.Areas.Manage.Controllers
         public IActionResult Create(Slider slider)
         {
             if(!ModelState.IsValid) return View(slider);
+            if(_context.Sliders.Any(x=>x.Order == slider.Order))
+            {
+                ModelState.AddModelError("Order",$"{slider.Order} reqeme sahib order artiq var");
+                return View();
+            }
             _context.Sliders.Add(slider);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
@@ -46,6 +51,16 @@ namespace ProniaPrototype.Areas.Manage.Controllers
             existslider.DiscountPercent = slider.DiscountPercent;
             existslider.Description = slider.Description;
             existslider.ImageUrl = slider.ImageUrl;
+            if (_context.Sliders.Any(s=>s.Order == slider.Order))
+            {
+                Slider firstslider = _context.Sliders.FirstOrDefault(x=>x.Order == slider.Order);
+                firstslider.Order = existslider.Order;
+                existslider.Order = slider.Order;
+            }
+            else 
+            { 
+                existslider.Order = slider.Order;
+            }
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }

@@ -7,11 +7,6 @@ namespace ProniaPrototype
     {
         public static void Main(string[] args)
         {
-
-            /*
-             Sizlə böldüyüm template-də. Slider, shipping area, categories, what say client, brands, colors hissələrini dinamikləşdirin 
-            */
-
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<AppDbContext>(opt =>
