@@ -18,7 +18,7 @@
                         {
                             <tr>
                                 <td>@item.Id</td>
-                                <td><img src="@item.ImageUrl" /></td>
+                                <td><img src="~/assets/images/@item.ImageUrl" /></td>
                                 <td><a class="btn btn-info" asp-area="Manage" asp-controller="Brand" asp-action="Update" asp-route-id="@item.Id" >Update</a></td>
                                 <td><a class="btn btn-danger" asp-area="Manage" asp-controller="Brand" asp-action="Delete" asp-route-id="@item.Id" >Delete</a></td>
                             </tr>

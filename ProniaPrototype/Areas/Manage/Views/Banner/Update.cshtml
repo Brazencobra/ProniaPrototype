@@ -1,4 +1,4 @@
-﻿@model CreateBannerVM
+﻿@model Banner
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
@@ -18,9 +18,9 @@
                                 <span asp-validation-for="MainTitle"></span>
                             </div>
                             <div class="form-group">
-                                <label asp-for="Image">Image</label>
-                                <input accept="image/*" asp-for="Image" class="form-control">
-                                <span asp-validation-for="Image"></span>
+                                <label asp-for="ImageUrl">Image</label>
+                                <input accept="image/*" asp-for="ImageUrl" class="form-control">
+                                <span asp-validation-for="ImageUrl"></span>
                             </div>
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
                             <a class="btn btn-light" asp-area="Manage" asp-controller="Banner" asp-action="Index">Cancel</a>

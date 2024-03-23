@@ -30,7 +30,7 @@
                                 <div class="inner-img">
                                     <div class="scene fill">
                                         <div class="expand-width" data-depth="0.2">
-                                            <img src="@item.ImageUrl"
+                                            <img src="~/assets/images/@item.ImageUrl"
                                                  alt="Inner Image" />
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="shipping-item">
                             <div class="shipping-img">
-                                <img src="@item.ImageUrl" />
+                                <img src="~/assets/images/@item.ImageUrl" />
                             </div>
                             <div class="shipping-content">
                                 <h2 class="title">@item.Name</h2>
@@ -1784,10 +1784,10 @@
         <div class="row g-min-30 g-4">
             @foreach (Banner item in (ViewBag.Banners ?? new List<Banner>()))
             {
-                <div class="col-lg-8">
+                <div class="col-lg-4">
                 <div class="banner-item img-hover-effect">
                     <div class="banner-img">
-                        <img src="@item.ImageUrl"
+                        <img src="~/assets/images/@item.ImageUrl"
                              alt="Banner Image" />
                     </div>
                     <div class="banner-content text-position-left">
@@ -2114,7 +2114,7 @@
                             <div class="user-info mb-3">
                                 <div class="user-shape-wrap">
                                     <div class="user-img">
-                                        <img src="@item.ImageUrl"
+                                        <img src="~/assets/images/@item.ImageUrl"
                                              alt="User Image" />
                                     </div>
                                 </div>
@@ -2149,7 +2149,7 @@
                             {
                                 <div class="swiper-slide">
                                     <a class="brand-item" href="#">
-                                        <img src="@item.ImageUrl"
+                                        <img src="~/assets/images/@item.ImageUrl"
                                              alt="Brand Image" />
                                     </a>
                                 </div>

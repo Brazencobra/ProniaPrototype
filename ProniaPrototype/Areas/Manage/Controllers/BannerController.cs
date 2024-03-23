@@ -26,6 +26,7 @@ namespace ProniaPrototype.Areas.Manage.Controllers
         [HttpPost]
         public IActionResult Create(CreateBannerVM bannerVM)
         {
+            if(!ModelState.IsValid) return View();
             IFormFile? file = bannerVM.Image;
             if (file is null || !file.ContentType.Contains("image/"))
             {
@@ -58,6 +59,26 @@ namespace ProniaPrototype.Areas.Manage.Controllers
             if (banner is null) return NotFound();
             _context.Banners.Remove(banner);
             _context.SaveChanges(true);
+            return RedirectToAction(nameof(Index));
+        }
+        public IActionResult Update(int? id)
+        {
+            if (id is null) return BadRequest();
+            Banner existbanner = _context.Banners.Find(id);
+            if(existbanner is null) return NotFound();
+            return View(existbanner);
+        }
+        [HttpPost]
+        public IActionResult Update(int? id,Banner banner)
+        {
+            if (id is null) return BadRequest();
+            Banner existbanner = _context.Banners.Find(id);
+            if (existbanner is null) return NotFound();
+            if (!ModelState.IsValid) return View();
+            existbanner.CollectionTitle = banner.CollectionTitle;
+            existbanner.MainTitle = banner.MainTitle;
+            existbanner.ImageUrl = banner.ImageUrl;
+            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
     }

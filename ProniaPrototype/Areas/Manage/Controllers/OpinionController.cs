@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProniaPrototype.DAL;
 using ProniaPrototype.Models;
+using ProniaPrototype.ViewModels;
 
 namespace ProniaPrototype.Areas.Manage.Controllers
 {
@@ -21,9 +22,28 @@ namespace ProniaPrototype.Areas.Manage.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Opinion opinion)
+        public IActionResult Create(CreateOpinionVM opinionVM)
         {
-            if(!ModelState.IsValid) return View(opinion);
+            if(!ModelState.IsValid) return View(opinionVM);
+            IFormFile? file = opinionVM.Image;
+            if (file is null || !file.ContentType.Contains("image/"))
+            {
+                ModelState.AddModelError("Image","Bu fayl sekl formatinda deyil");
+                return View(opinionVM);
+            }
+            string filename = Guid.NewGuid().ToString() + file.FileName;
+            using (var stream = new FileStream("C:\\Users\\user\\Desktop\\Projects\\ProniaPrototype\\ProniaPrototype\\wwwroot\\assets\\images\\" + filename , FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+            Opinion opinion = new Opinion 
+            { 
+                Name = opinionVM.Name , 
+                Surname = opinionVM.Surname , 
+                Role = opinionVM.Role , 
+                Description = opinionVM.Description , 
+                ImageUrl = filename
+            };
             _context.Opinions.Add(opinion);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));

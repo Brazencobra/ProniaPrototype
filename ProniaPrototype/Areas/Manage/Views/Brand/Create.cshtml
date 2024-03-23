@@ -1,4 +1,4 @@
-﻿@model Brand
+﻿@model CreateBrandVM
 <div class="main-panel">
     <div class="content-wrapper">
         <div class="row">
@@ -6,10 +6,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Create Brand</h4>
-                        <form class="forms-sample" method="post">
+                        <form class="forms-sample" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label asp-for="ImageUrl">ImageUrl</label>
-                                <input asp-for="ImageUrl" class="form-control">
+                                <label asp-for="Image">Image</label>
+                                <input accept="image/*" asp-for="Image" class="form-control">
+                                <span class="text-danger" asp-validation-for="Image" ></span>
                             </div>
                             @* <a class="btn btn-primary me-2" asp-area="Manage" asp-controller="Brand" asp-action="Create">Create</a> *@
                             <button type="submit" class="btn btn-primary me-2">Submit</button>

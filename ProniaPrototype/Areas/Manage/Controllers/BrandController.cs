@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using ProniaPrototype.DAL;
 using ProniaPrototype.Models;
+using ProniaPrototype.ViewModels;
 
 namespace ProniaPrototype.Areas.Manage.Controllers
 {
@@ -21,9 +23,24 @@ namespace ProniaPrototype.Areas.Manage.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Brand brand)
+        public IActionResult Create(CreateBrandVM brandVM)
         {
-            if (!ModelState.IsValid) return View();
+            if (!ModelState.IsValid) return View(brandVM);
+            IFormFile? file = brandVM.Image;
+            if (file is null || !file.ContentType.Contains("image/"))
+            {
+                ModelState.AddModelError("Image","Bu fayl sekl formatinda deyil");
+                return View(brandVM);
+            }
+            string filename = Guid.NewGuid().ToString() + file.FileName;
+            using (var stream = new FileStream("C:\\Users\\user\\Desktop\\Projects\\ProniaPrototype\\ProniaPrototype\\wwwroot\\assets\\images\\" + filename, FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+            Brand brand = new Brand 
+            {
+                ImageUrl = filename
+            };
             _context.Brands.Add(brand);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));

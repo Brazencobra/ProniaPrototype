@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ProniaPrototype.DAL;
 using ProniaPrototype.Models;
+using ProniaPrototype.ViewModels;
 
 namespace ProniaPrototype.Areas.Manage.Controllers
 {
@@ -23,9 +24,26 @@ namespace ProniaPrototype.Areas.Manage.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(ShippingArea shippingArea)
+        public IActionResult Create(CreateShippingAreaVM shippingAreaVM)
         {
-            if (!ModelState.IsValid) return View(shippingArea);
+            if (!ModelState.IsValid) return View(shippingAreaVM);
+            IFormFile? file = shippingAreaVM.Image;
+            if (file is null || !file.ContentType.Contains("image/"))
+            {
+                ModelState.AddModelError("Image","Bu fayl sekl formatinda deyil");
+                return View(shippingAreaVM);
+            }
+            string filename = Guid.NewGuid().ToString() + file.FileName;
+            using (var stream = new FileStream("C:\\Users\\user\\Desktop\\Projects\\ProniaPrototype\\ProniaPrototype\\wwwroot\\assets\\images\\" + filename , FileMode.Create))
+            {
+                file.CopyTo(stream);
+            }
+            ShippingArea shippingArea = new ShippingArea 
+            {
+                Name = shippingAreaVM.Name,
+                Description = shippingAreaVM.Description,
+                ImageUrl = filename
+            };
             _context.ShippingAreas.Add(shippingArea);
             _context.SaveChanges();
             return RedirectToAction(nameof(Index));
